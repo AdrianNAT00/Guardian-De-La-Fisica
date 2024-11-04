@@ -19,11 +19,14 @@ public class BackgroundScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World); // Move the background backwards
-        // If background moves left by its repeat width, move it back to start position
+        if (!GameManager.Instance.GameOver)
+        {
+            transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World); // Move the background backwards
+                                                                                     // If background moves left by its repeat width, move it back to start position
             if (transform.position.z < startPos.z - repeatLength)
             {
                 transform.position = startPos;
             }
+        }
     }
 }

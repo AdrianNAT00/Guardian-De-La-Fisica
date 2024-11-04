@@ -7,9 +7,10 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance;
     [SerializeField] private List<GameObject> obstaclePrefab;
 
-    public int PoolSize = 10;
+    public int poolSize = 10;
 
     private List<GameObject> pooledObstacles;
+    private Queue<GameObject> pool = new Queue<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,9 @@ public class ObjectPool : MonoBehaviour
 
     private void InitializePool()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < obstaclePrefab.Count; i++)
         {
-            GameObject obj = Instantiate(obstaclePrefab);
+            GameObject obj = Instantiate(obstaclePrefab[i]);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
